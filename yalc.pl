@@ -50,18 +50,20 @@ sub getAnchors {
 				my $hashFile = substr($href, 0, index($href, "#"));
 				$hashId = substr($href, index($href, "#") + 1); 
 
-				$filepath = $currDir . "/" . $hashFile;
+				if ($hashFile ne '')
+				{
+					$filepath = $currDir . "/" . $hashFile;
 
-				# check preceeding file first
-				if ($caseCheck eq 'y')
-				{
-					casedFileCheck($hashFile, $file, $filepath);
-				}
-				else
-				{
-					uncasedFileCheck($hashFile);
+					# check preceeding file first
+					if ($caseCheck eq 'y')
+					{
+						casedFileCheck($hashFile, $file, $filepath);
+					}
+					else
+					{
+						uncasedFileCheck($hashFile);
+		 			}
 	 			}
-
 	 			# then validate hash
 				$h->parse_file($file);
 			}
